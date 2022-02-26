@@ -14,27 +14,35 @@
             <button type="button" class="high-score">View high scores</button>
         </div>
         <div>
-            <h2>Time Left:</h2>
+            <h2 id="countdown"></h2>
         </div>
     </header>
     <main>
         <section>
             <div class="container">
-                <h2>Test Your Coding Knowledge!</h2>
-                <p>Click the start button to take a timed coding quiz. 
+                <h2 id="title">Test Your Coding Knowledge!</h2>
+                <p id="directions">Click the start button to take a timed coding quiz. 
                     The faster you complete the quiz, the higher your score. 
                     However, be careful not to get any incorrect answers as missing a question subtracts seconds away from your time left. 
                 </br>
                 Good Luck!
                 </p>
-                <button type="button" class="answer-btn">Answer #1</button>
-                <button type="button" class="answer-btn">Answer #2</button>
-                <button type="button" class="answer-btn">Answer #3</button>
-                <button type="button" class="answer-btn">Answer #4</button>
-                <button type="button" class="start-btn">Start</button>
-                <button type="button" class="submit-btn">Submit</button>
+                <p id="question"></p>
+                <div class="answer">
+                    <button type="button" class="answer-btn hide">Answer #1 </button>
+                    <button type="button" class="answer-btn hide">Answer #2 </button>
+                    <button type="button" class="answer-btn hide">Answer #3 </button>
+                    <button type="button" class="answer-btn hide">Answer #4 </button>
+                </div>
+                <div class="start-submit">
+                    <button type="button" id="start-btn">Start</button>
+                    <button type="button" id="submit-btn" class="hide">Submit</button>
+                </div>
             </div>
         </section>
     </main>
+
 </body>
+
+<script src="./assets/quiz.js"></script>
 </html>

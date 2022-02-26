@@ -1,10 +1,11 @@
+/*Universal styles*/
 *, *::before, *::after {
     box-sizing: border-box;
     font-family: Inter, sans-serif;
 }
-
+/*Stored variables for colors*/
 :root {
-    --primary-color:##FFFFFF;
+    --primary-color:#FFFFFF;
     --secondary-color:#FFC0CB;
     --tertiary-color:#FF69B4;
     --quaternary-color:	#FF1493;
@@ -15,7 +16,7 @@ body {
     margin: 0;
     background-color: var(--primary-color);
 }
-
+/*Applies flex properties to main elements direct children*/
 main {
     display: flex;
     justify-content: center;
@@ -27,10 +28,14 @@ section {
     justify-content: center;
     background-color:var(--secondary-color);
     max-width: 70%;
+    max-height:fit-content;
     border-radius: 10px;
 }
 
-
+section h2 {
+    font-size: 30px;
+}
+/*Style for all buttons*/
 button {
     color: white;
     border:none;
@@ -41,18 +46,41 @@ button {
     opacity: 70%;
     transition-duration: 0.4s;
 }
-
+/*Makes button swell & fully opaque when user hovers mouse over button*/
+/*Changes mouse to pointer on hover*/
 button:hover {
     opacity: 100%;
-    transform:scale(1.2)
+    transform:scale(1.2);
+    cursor:pointer;
 }
 
 .high-score {
     background-color:var(--tertiary-color);
 }
 
+.answer {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .answer-btn {
-    background-color:var(--tertiary-color)
+    background-color:var(--tertiary-color);
+}
+
+#start-btn {
+    padding: 15px;
+    font-size: 20px;
+}
+
+#submit-btn {
+    padding: 15px;
+    font-size: 20px;
+}
+
+.start-submit {
+    display: flex;
+    flex-wrap:nowrap;
 }
 .header {
     display: flex;
@@ -72,3 +100,6 @@ button:hover {
     text-align: center;
 }
 
+.hide {
+    display: none;
+}
