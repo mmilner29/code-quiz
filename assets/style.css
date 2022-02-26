@@ -58,7 +58,7 @@ button:hover {
     background-color:var(--tertiary-color);
 }
 
-.answer {
+#answer {
     display:flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -69,11 +69,6 @@ button:hover {
 }
 
 #start-btn {
-    padding: 15px;
-    font-size: 20px;
-}
-
-#submit-btn {
     padding: 15px;
     font-size: 20px;
 }
@@ -102,4 +97,12 @@ button:hover {
 
 .hide {
     display: none;
+}
+
+.green {
+    background-color: chartreuse;
+}
+
+.red {
+    background-color:crimson;
 }

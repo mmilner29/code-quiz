@@ -1,58 +1,39 @@
 //Define variables
-startButton = document.getElementById('start-btn')
-quizContainer = document.getElementById('container')
-quizDirections = document.getElementById('directions')
-questionElement = document.getElementById('question')
-answerElement = document.getElementsByClassName('answer-btn')
-timerEl = document.getElementById('countdown')
+var startButton = document.getElementById('start-btn');
+var quizDirections = document.getElementById('directions');
+var questionElement = document.getElementById('question');
+var answerElement = document.getElementById('answer');
+var timerEl = document.getElementById('countdown');
+var questionIndex = 0;
+var timeLeft = 75;
 
-startButton.addEventListener('click', startCoding)
+startButton.addEventListener('click', startCodingQuiz)
 
 quizQuestions = [
     {
         question: 'What html element creates an unordered list?',
-        options: [
-            { text: '<ul>', correct: true},
-            { text: '<ol>', correct: false},
-            { text: '<li>', correct: false},
-            { text: '<list>', correct: false}
-        ]
+        options: ['<ul>', '<ol>', '<li>', '<list>'],
+        answer: '<ul>'
     },
     {
         question: 'What does DOM stand for?',
-        options: [
-            { text: '<Data Object Model>', correct: false},
-            { text: '<Data Output Model>', correct: false},
-            { text: '<Document Object Model>', correct: true},
-            { text: '<Document Output Model>', correct: false}
-        ]
+        options: ['Data Object Model', 'Data Output Model','Document Object Model', 'Document Output Model'],
+        answer: 'Document Object Model'
     },
     {
         question: 'What does the "box-sizing" property do?',
-        options: [
-            { text: '<Changes the calculation of the padding and margin.>', correct: false},
-            { text: '<Changes the calculation of the margins.>', correct: false},
-            { text: '<Changes the calculation of the width and height>', correct: true},
-            { text: '<Changes the calculation of the width.>', correct: false}
-        ]
+        options: ['Changes the calculation of the padding and margin.', 'Changes the calculation of the margins.', 'Changes the calculation of the width and height', 'Changes the calculation of the width.'],
+        answer: 'Changes the calculation of the width and height'
     },
     {
         question: 'What does the scope of a variable determine in JavaScript?',
-        options: [
-            { text: '<How long the variable is.>', correct: false},
-            { text: '<The accessiblity of the variable.>', correct: true},
-            { text: '<Whether or not the variable is written correctly.>', correct: false},
-            { text: '<Scope is not related to a variable.>', correct: false}
-        ]
+        options: ['How long the variable is.', 'The accessiblity of the variable.', 'Whether or not the variable is written correctly.', 'Scope is not related to a variable.'],
+        answer: 'The accessiblity of the variable.'
     },
     {
         question: 'Which phrase initializes a local repository in Git?',
-        options: [
-            { text: '<git initialize>', correct: false},
-            { text: '<git init>', correct: true},
-            { text: '<init>', correct: false},
-            { text: '<git local repo>', correct: false}
-        ]
+        options: ['git initialize', 'git init', 'init', 'git local repo'],
+        answer: 'git init'
     },
 
 ]
@@ -60,42 +41,56 @@ quizQuestions = [
 quizLength = quizQuestions.length
 
 //Start Game Function
-function startCoding() {
+function startCodingQuiz() {
     startButton.classList.add('hide');
     quizDirections.classList.add('hide');
-    currentQuestion = 0
     chooseQuestion()
     countdown()
 
 }
 
 function chooseQuestion() {
+    questionElement.innerHTML = "";
+    answerElement.innerHTML = "";
     for (var i = 0; i < quizLength; i++) {
-        displayQuestion(quizQuestions[i])
+        var userQuestion = quizQuestions[questionIndex].question;
+        questionElement.innerText = userQuestion
+        var userOptions = quizQuestions[questionIndex].options
+    }
+    userOptions.forEach(function (addOption) {
+        var button = document.createElement('button');
+        button.innerText = addOption;
+        button.classList.add('answer-btn');
+        button.addEventListener('click', chooseAnswer);
+        answerElement.appendChild(button);
+    })
+};
+
+function chooseAnswer(event) {
+    var element = event.target
+
+    if (element.matches('button')) {
+        if (element.innerText == quizQuestions[questionIndex].answer) {
+            element.classList.add('green');
+        } else {
+            element.classList.add('red');
+            timeLeft = timeLeft - 10;
+        }
+    }
+
+   questionIndex++;
+
+    if (questionIndex >= quizLength) {
+        console.log('done');
+    } else {
+        chooseQuestion(questionIndex);
     }
 }
 
-function displayQuestion(quizQuestions) {
-    questionElement.innerText = quizQuestions.question
-    // quizQuestions.options.forEach(options => {
-    //     const button = document.createElement('button')
-    //     button.innerText = options.text
-    //     button.classList.add('answer-btn')
-    //     if (options.true) {
-    //         button.dataset.correct = options.correct
-    //     }
-    //     button.addEventListener('click', chooseAnswer)
-    //     answerElement.appendChild(button)
-    // })
-}
 
-function chooseAnswer(event) {
-    
-}
 
 //Start Timer Function
 function countdown() {
-    var timeLeft = 5;
   
     // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     var timeInterval = setInterval(function() {
