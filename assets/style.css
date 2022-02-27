@@ -94,15 +94,7 @@ button:hover {
     max-height: 500px;
     text-align: center;
 }
-
+/*Allows an element to be hidden from view when not needed to be seen*/
 .hide {
     display: none;
-}
-
-.green {
-    background-color: chartreuse;
-}
-
-.red {
-    background-color:crimson;
 }

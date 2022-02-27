@@ -10,7 +10,7 @@ A timed quiz designed to help you practice your coding skills!
 
 ## Website
 
-
+https://mmilner29.github.io/code-quiz/
 
 ## Preview
 

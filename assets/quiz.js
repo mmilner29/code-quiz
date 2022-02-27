@@ -7,8 +7,10 @@ var timerEl = document.getElementById('countdown');
 var questionIndex = 0;
 var timeLeft = 75;
 
+//Event Listener for start button-- starts quiz when start button is clicked
 startButton.addEventListener('click', startCodingQuiz)
 
+//Array of quiz questions
 quizQuestions = [
     {
         question: 'What html element creates an unordered list?',
@@ -38,6 +40,7 @@ quizQuestions = [
 
 ]
 
+//Define Quiz length
 quizLength = quizQuestions.length
 
 //Start Game Function
@@ -49,6 +52,7 @@ function startCodingQuiz() {
 
 }
 
+//Iterate through array to choose next question & display it (along with answer options) to screen
 function chooseQuestion() {
     questionElement.innerHTML = "";
     answerElement.innerHTML = "";
@@ -66,6 +70,7 @@ function chooseQuestion() {
     })
 };
 
+//Subtract time if wrong answer is chosen
 function chooseAnswer(event) {
     var element = event.target
 
@@ -76,10 +81,10 @@ function chooseAnswer(event) {
         }
     }
 
+    //Cycle through to next question OR end quiz)
    questionIndex++;
 
     if (questionIndex >= quizLength) {
-        console.log('done');
         quizOver();
 
     } else {
@@ -87,6 +92,7 @@ function chooseAnswer(event) {
     }
 };
 
+//Function to end quiz & document final score & user initals
 function quizOver() {
     questionElement.innerHTML = "";
     answerElement.innerHTML = "";
@@ -117,8 +123,7 @@ function quizOver() {
 
 //Start Timer Function
 function countdown() {
-  
-    // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+
     var timeInterval = setInterval(function() {
       if (timeLeft > 1) {
         timerEl.textContent = timeLeft + ' seconds remaining';
@@ -139,5 +144,6 @@ function countdown() {
 
   function displayMessage() {
       alert ("You ran out of time! Try to answer all the questions before your time runs out.");
+      //refresh the page to start fresh
       window.location.reload();
   }

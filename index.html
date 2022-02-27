@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Links CSS stylesheet & adds favicon to window tab-->
     <link rel="stylesheet" href="assets/style.css">
     <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
     <title>Code Quiz</title>
@@ -11,9 +12,11 @@
 <body>
     <header class="header">
         <div>
+            <!--When button is clicked, takes user to high score page-->
             <button type="button" class="high-score" onclick="location.href='./highscores.html'">View high scores</button>
         </div>
         <div>
+            <!--Empty element for countdown to populate in-->
             <h2 id="countdown"></h2>
         </div>
     </header>
@@ -30,17 +33,18 @@
                 Good Luck!
                 </p>
                 <p id="question"></p>
+                <!--DIV for answer option buttons-->
                 <div id="answer">
-                    <button type="button" class="answer-btn hide">Answer #1 </button>
                 </div>
                 <div class="start-submit">
                     <button type="button" id="start-btn">Start</button>
                 </div>
             </div>
         </section>
+        <div id="right-wrong"></div>
     </main>
 
 </body>
-
+<!--Link JavaScript file at bottom of page so it doesn't try to run before HTML renders-->
 <script src="./assets/quiz.js"></script>
 </html>
