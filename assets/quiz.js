@@ -71,9 +71,7 @@ function chooseAnswer(event) {
 
     if (element.matches('button')) {
         if (element.innerText == quizQuestions[questionIndex].answer) {
-            element.classList.add('green');
         } else {
-            element.classList.add('red');
             timeLeft = timeLeft - 10;
         }
     }
@@ -94,7 +92,7 @@ function quizOver() {
     answerElement.innerHTML = "";
 
     var finalScore = timeLeft;
-    initials = window.prompt('Your time left was ' + finalScore + '. Please enter your initials to save your time. You can view all your scores at any time by clicking "View high scores" in the top left corner.')
+    initials = window.prompt('Your time left was ' + finalScore + ' seconds. Please enter your initials to save your time. You can view all your scores at any time by clicking "View high scores" in the top left corner.')
     if (initials === null) {
         alert('You need to enter a valid response');
         return quizOver();
@@ -112,6 +110,7 @@ function quizOver() {
         scoreLog.push(score);
         var updatedScoreLog = JSON.stringify(scoreLog);
         localStorage.setItem("scoreLog", updatedScoreLog);
+        window.location.replace("./highscores.html");
     }
     window.location.reload();
 };
