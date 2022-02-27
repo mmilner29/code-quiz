@@ -16,7 +16,7 @@ quizQuestions = [
         answer: '<ul>'
     },
     {
-        question: 'What does DOM stand for?',
+        question: 'What does  the acronym DOM stand for?',
         options: ['Data Object Model', 'Data Output Model','Document Object Model', 'Document Output Model'],
         answer: 'Document Object Model'
     },
