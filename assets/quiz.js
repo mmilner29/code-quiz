@@ -4,6 +4,7 @@ var quizDirections = document.getElementById('directions');
 var questionElement = document.getElementById('question');
 var answerElement = document.getElementById('answer');
 var timerEl = document.getElementById('countdown');
+var rightWrong = document.getElementById('right-wrong');
 var questionIndex = 0;
 var timeLeft = 75;
 
@@ -34,7 +35,7 @@ quizQuestions = [
     },
     {
         question: 'Which phrase initializes a local repository in Git?',
-        options: ['git initialize', 'git init', 'init', 'git local repo'],
+        options: ['git initialize repository main', 'git init', 'init local repo', 'git local repo'],
         answer: 'git init'
     },
 
@@ -76,8 +77,16 @@ function chooseAnswer(event) {
 
     if (element.matches('button')) {
         if (element.innerText == quizQuestions[questionIndex].answer) {
+            var createMessage = document.createElement('div');
+            createMessage.textContent = 'Correct! ';
+            createMessage.setAttribute("id", "message");
+            rightWrong.appendChild(createMessage);
         } else {
             timeLeft = timeLeft - 10;
+            var createMessage = document.createElement('div');
+            createMessage.textContent = 'Incorrect! ';
+            createMessage.setAttribute("id", "message");
+            rightWrong.appendChild(createMessage);
         }
     }
 
@@ -99,7 +108,7 @@ function quizOver() {
 
     var finalScore = timeLeft;
     initials = window.prompt('Your time left was ' + finalScore + ' seconds. Please enter your initials to save your time. You can view all your scores at any time by clicking "View high scores" in the top left corner.')
-    if (initials === null) {
+    if (initials === null || "") {
         alert('You need to enter a valid response');
         return quizOver();
     } else {
