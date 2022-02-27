@@ -82,12 +82,39 @@ function chooseAnswer(event) {
 
     if (questionIndex >= quizLength) {
         console.log('done');
+        quizOver();
+
     } else {
         chooseQuestion(questionIndex);
     }
-}
+};
 
+function quizOver() {
+    questionElement.innerHTML = "";
+    answerElement.innerHTML = "";
 
+    var finalScore = timeLeft;
+    initials = window.prompt('Your time left was ' + finalScore + '. Please enter your initials to save your time. You can view all your scores at any time by clicking "View high scores" in the top left corner.')
+    if (initials === null) {
+        alert('You need to enter a valid response');
+        return quizOver();
+    } else {
+        var score = {
+            initials: initials,
+            score: finalScore
+        }
+        var scoreLog = localStorage.getItem('scoreLog');
+        if (scoreLog === null) {
+            scoreLog = [];
+        } else {
+            scoreLog = JSON.parse(scoreLog);
+        }
+        scoreLog.push(score);
+        var updatedScoreLog = JSON.stringify(scoreLog);
+        localStorage.setItem("scoreLog", updatedScoreLog);
+    }
+    window.location.reload();
+};
 
 //Start Timer Function
 function countdown() {
@@ -102,13 +129,11 @@ function countdown() {
       else if (timeLeft === 1) {
         timerEl.textContent = timeLeft + ' second remaining';
         timeLeft--;
-      } 
-      else {
+      } else {
         timerEl.textContent = '';
         clearInterval(timeInterval);
         displayMessage();
       };
-  
       
     }, 1000);
   }
